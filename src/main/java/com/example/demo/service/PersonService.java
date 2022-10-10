@@ -58,6 +58,19 @@ public class PersonService {
         return personResponses;
     }
 
+    public PersonResponse get(final UUID id) {
+        final PersonEntity personEntity = personRepository.findPersonEntityById(id);
+
+        final PersonResponse personResponse = PersonResponse.builder()
+                .userId(personEntity.getId())
+                .firstName(personEntity.getFirstName())
+                .lastName(personEntity.getLastName())
+                .dateOfBirth(personEntity.getDateOfBirth())
+                .build();
+        return personResponse;
+
+    }
+
     public void delete(final String id) {
         personRepository.delete(PersonEntity.builder().id(UUID.fromString(id)).build());
     }

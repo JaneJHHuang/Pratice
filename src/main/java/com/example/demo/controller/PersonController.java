@@ -30,6 +30,9 @@ public class PersonController {
         return personService.get(firstName);
     }
 
+    @GetMapping("/person/{id}")
+    public PersonResponse get(@RequestParam final UUID id) { return personService.get(id); }
+
     @PutMapping("/person")
     public void put(@RequestBody final IdentifiedPersonRequest identifiedPersonRequest) {
         personService.put(identifiedPersonRequest);
